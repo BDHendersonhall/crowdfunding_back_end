@@ -1,4 +1,4 @@
-app = "crowdfunding_back_end"
+app = "crowdfunding-back-end"
 primary_region = "syd"
 console_command = "/code/manage.py shell"
 kill_signal = "SIGINT"

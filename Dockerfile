@@ -10,17 +10,17 @@ RUN mkdir -p /code
 WORKDIR /code
 
 COPY requirements.txt /tmp/requirements.txt
+
 RUN set -ex && \
     pip install --upgrade pip && \
     pip install -r /tmp/requirements.txt && \
     rm -rf /root/.cache/
+
 COPY crowdfunding/ /code/
 
-ENV SECRET_KEY "5oAHJdbKyxyjkIL5uqCg6MoolWGRG1iBGGn428e7FMlmto6GP6"
 RUN python manage.py collectstatic --noinput
 RUN chmod +x /code/run.sh
 
 EXPOSE 8000
 
-# replace demo.wsgi with <project_name>.wsgi-CMD ["gunicorn", "--bind", ":8000", "--workers", "2", "demo.wsgi"]
 CMD ["/code/run.sh"]
